@@ -7,53 +7,112 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
 </p>
 
-## About Laravel
+**Proyek**
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **Nama:** `junior-web-programmer-perpustakaan` — aplikasi web perpustakaan sederhana berbasis Laravel, dibuat sebagai latihan Junior Web Programmer.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+**Ringkasan**
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- **Deskripsi:** Aplikasi manajemen perpustakaan bergaya CRUD yang dibuat dengan Laravel. Projek ini berisi model, migration, controller, dan view Blade untuk mengelola data perpustakaan (lihat `app/Models/perpustakaan.php`).
 
-## Learning Laravel
+**Persyaratan**
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+- **PHP:** PHP 8.0+ (atau versi yang didukung instalasi Laravel Anda).
+- **Composer:** untuk mengelola dependensi PHP.
+- **Node.js & npm/yarn:** untuk tooling frontend (Vite).
+- **Basis data:** MySQL / MariaDB / SQLite (dikonfigurasi melalui `.env`).
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+**Mulai Cepat — Pengaturan Lokal**
 
-## Laravel Sponsors
+1. Clone repository dan masuk ke direktori proyek:
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+```
+git clone <repo-url> junior-web-programmer-perpustakaan
+cd junior-web-programmer-perpustakaan
+```
 
-### Premium Partners
+2. Install dependensi PHP:
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+```
+composer install
+```
 
-## Contributing
+3. Salin file environment dan konfigurasi (database, APP_URL, mail, dll):
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```
+cp .env.example .env
+```
 
-## Code of Conduct
+Edit file `.env` dan atur nilai `DB_` sesuai pengaturan database Anda.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+4. Generate application key:
 
-## Security Vulnerabilities
+```
+php artisan key:generate
+```
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+5. Jalankan migration database (dan seed jika perlu):
 
-## License
+```
+php artisan migrate
+php artisan db:seed     # opsional, jika seeder tersedia dan Anda ingin data contoh
+```
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+6. Install dependensi frontend dan build aset:
+
+```
+npm install
+npm run dev        # pengembangan (hot-reload)
+npm run build      # build produksi
+```
+
+7. Jalankan aplikasi secara lokal:
+
+```
+php artisan serve
+```
+
+Buka alamat server yang dicetak oleh perintah (biasanya `http://127.0.0.1:8000`).
+
+**Menjalankan Tes**
+
+- Jalankan tes Laravel/PHP dengan:
+
+```
+php artisan test
+```
+
+- Atau jalankan langsung dengan PHPUnit:
+
+```
+vendor/bin/phpunit
+```
+
+**Struktur Proyek (file utama)**
+
+- **`app/Models/`**: Model Eloquent (mis. `perpustakaan.php`, `User.php`).
+- **`app/Http/Controllers/`**: Controller yang menangani request HTTP.
+- **`database/migrations/`**: File migration untuk membuat tabel database (lihat `2025_11_18_235730_create_perpustakaan_table.php`).
+- **`database/seeders/`**: Seeder untuk mengisi data awal.
+- **`resources/views/`**: Template Blade dan file layout (termasuk tampilan `layouts/perpustakaan`).
+- **`routes/web.php`**: Route web aplikasi.
+**Basis Data**
+
+- File migration sudah ada; setelah `.env` dikonfigurasi jalankan `php artisan migrate` untuk membuat tabel. Terdapat migration `create_perpustakaan_table` untuk menyimpan data perpustakaan.
+
+**Catatan Penempatan (Deployment)**
+
+- Atur variabel environment yang sesuai pada file `.env` di produksi dan konfigurasikan web server (Apache/Nginx) untuk melayani direktori `public/`.
+- Jalankan `php artisan migrate --force` saat deploy untuk menerapkan perubahan database di lingkungan produksi.
+
+**Kontribusi**
+
+- Silakan buka issue atau PR. Ikuti langkah dasar berikut:
+
+```
+git checkout -b feature/your-feature
+make changes
+composer test or php artisan test
+git commit -am "Add: description"
+git push origin feature/your-feature
+```
