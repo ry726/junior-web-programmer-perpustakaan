@@ -51,11 +51,10 @@ Edit file `.env` dan atur nilai `DB_` sesuai pengaturan database Anda.
 php artisan key:generate
 ```
 
-5. Jalankan migration database (dan seed jika perlu):
+5. Jalankan migration database:
 
 ```
 php artisan migrate
-php artisan db:seed     # opsional, jika seeder tersedia dan Anda ingin data contoh
 ```
 
 6. Install dependensi frontend dan build aset:
@@ -93,7 +92,6 @@ vendor/bin/phpunit
 - **`app/Models/`**: Model Eloquent (mis. `perpustakaan.php`, `User.php`).
 - **`app/Http/Controllers/`**: Controller yang menangani request HTTP.
 - **`database/migrations/`**: File migration untuk membuat tabel database (lihat `2025_11_18_235730_create_perpustakaan_table.php`).
-- **`database/seeders/`**: Seeder untuk mengisi data awal.
 - **`resources/views/`**: Template Blade dan file layout (termasuk tampilan `layouts/perpustakaan`).
 - **`routes/web.php`**: Route web aplikasi.
 **Basis Data**
