@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\PerpustakaanController;
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::redirect('/', '/perpustakaan');
+
+Route::resource('perpustakaan', PerpustakaanController::class);
